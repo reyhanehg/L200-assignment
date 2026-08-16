@@ -1,0 +1,47 @@
+[
+  {
+    "id": "p1",
+    "name": "quinoa",
+    "category": "Pantry & Dry Goods",
+    "quantity": 300.0,
+    "unit": "g",
+    "expiration_date": null,
+    "added_at": "2026-08-16T21:57:40.662974"
+  },
+  {
+    "id": "p2",
+    "name": "olive oil",
+    "category": "Pantry & Dry Goods",
+    "quantity": 250.0,
+    "unit": "g",
+    "expiration_date": null,
+    "added_at": "2026-08-16T21:57:40.662990"
+  },
+  {
+    "id": "p3",
+    "name": "garlic",
+    "category": "Produce",
+    "quantity": 50.0,
+    "unit": "g",
+    "expiration_date": null,
+    "added_at": "2026-08-16T21:57:40.662996"
+  },
+  {
+    "id": "p4",
+    "name": "rolled oats",
+    "category": "Pantry & Dry Goods",
+    "quantity": 500.0,
+    "unit": "g",
+    "expiration_date": null,
+    "added_at": "2026-08-16T21:57:40.663001"
+  },
+  {
+    "id": "p5",
+    "name": "spinach",
+    "category": "Produce",
+    "quantity": 100.0,
+    "unit": "g",
+    "expiration_date": null,
+    "added_at": "2026-08-16T21:57:40.663005"
+  }
+]

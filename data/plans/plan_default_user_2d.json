@@ -1,0 +1,478 @@
+{
+  "id": "plan_default_user_2d",
+  "user_id": "default_user",
+  "days": [
+    {
+      "day_name": "Monday",
+      "meals": [
+        {
+          "id": "rec_001_s2",
+          "title": "Protein Power Berry Oatmeal with Almonds (2 servings)",
+          "description": "Warm rolled oats simmered with almond milk, topped with antioxidant-rich blueberries, chia seeds, and sliced almonds.",
+          "meal_type": "breakfast",
+          "servings": 2,
+          "prep_time_minutes": 5,
+          "cook_time_minutes": 5,
+          "ingredients": [
+            {
+              "name": "rolled oats",
+              "quantity": 100.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "almond milk",
+              "quantity": 400.0,
+              "unit": "g",
+              "category": "Dairy & Alternatives",
+              "notes": null
+            },
+            {
+              "name": "blueberries",
+              "quantity": 150.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "chia seeds",
+              "quantity": 30.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "almonds",
+              "quantity": 40.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            }
+          ],
+          "instructions": [
+            "Combine rolled oats and almond milk in a small saucepan over medium heat.",
+            "Cook for 4-5 minutes, stirring occasionally until creamy.",
+            "Pour into a bowl and top with fresh blueberries, sliced almonds, and chia seeds."
+          ],
+          "nutrition": {
+            "calories": 456.0,
+            "protein_g": 16.6,
+            "carbs_g": 55.2,
+            "fat_g": 20.7,
+            "fiber_g": 15.2,
+            "sodium_mg": 144.4,
+            "sugar_g": 0.0
+          },
+          "tags": [
+            "vegan",
+            "vegetarian",
+            "dairy_free",
+            "high_fiber",
+            "quick"
+          ],
+          "safety_check": {
+            "is_safe": true,
+            "violates_allergens": [],
+            "violates_dietary_rules": [],
+            "warnings": [],
+            "explanation": "Recipe passed all allergen and dietary safety constraints."
+          }
+        },
+        {
+          "id": "rec_004",
+          "title": "Crispy Tofu & Sesame Veggie Stir-Fry",
+          "description": "Golden pan-fried tofu cubes tossed with vibrant broccoli, red bell pepper, garlic, and toasted sesame seeds.",
+          "meal_type": "lunch",
+          "servings": 2,
+          "prep_time_minutes": 15,
+          "cook_time_minutes": 10,
+          "ingredients": [
+            {
+              "name": "tofu",
+              "quantity": 250.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "broccoli",
+              "quantity": 150.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "bell pepper",
+              "quantity": 100.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "garlic",
+              "quantity": 10.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "olive oil",
+              "quantity": 15.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            }
+          ],
+          "instructions": [
+            "Press tofu with paper towels and cut into 1-inch cubes.",
+            "Heat olive oil in a wok or large skillet over high heat.",
+            "Add tofu cubes and fry until golden on all sides (approx 6 minutes).",
+            "Toss in minced garlic, broccoli florets, and sliced bell pepper. Stir-fry for 4 minutes until crisp-tender."
+          ],
+          "nutrition": {
+            "calories": 209.8,
+            "protein_g": 12.9,
+            "carbs_g": 12.0,
+            "fat_g": 14.0,
+            "fiber_g": 3.5,
+            "sodium_mg": 36.5,
+            "sugar_g": 0.0
+          },
+          "tags": [
+            "vegan",
+            "vegetarian",
+            "dairy_free",
+            "plant_based",
+            "gluten_free"
+          ],
+          "safety_check": {
+            "is_safe": true,
+            "violates_allergens": [],
+            "violates_dietary_rules": [],
+            "warnings": [],
+            "explanation": "Recipe passed all allergen and dietary safety constraints."
+          }
+        },
+        {
+          "id": "rec_007",
+          "title": "Mediterranean Quinoa Bowl with Lemon Herb Salmon",
+          "description": "Hearty whole grain quinoa bowl topped with pan-seared wild salmon, fresh cucumbers, and olive oil.",
+          "meal_type": "dinner",
+          "servings": 2,
+          "prep_time_minutes": 15,
+          "cook_time_minutes": 15,
+          "ingredients": [
+            {
+              "name": "salmon fillet",
+              "quantity": 250.0,
+              "unit": "g",
+              "category": "Meat & Seafood",
+              "notes": null
+            },
+            {
+              "name": "quinoa",
+              "quantity": 150.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "cucumber",
+              "quantity": 100.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "spinach",
+              "quantity": 80.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "olive oil",
+              "quantity": 15.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            }
+          ],
+          "instructions": [
+            "Rinse quinoa and simmer in 2 cups of water for 15 minutes until fluffy.",
+            "Season salmon with salt, pepper, and olive oil.",
+            "Pan-sear salmon on medium-high heat for 4-5 minutes per side until golden.",
+            "Assemble bowls with quinoa, fresh baby spinach, sliced cucumbers, and flake the salmon over top."
+          ],
+          "nutrition": {
+            "calories": 433.0,
+            "protein_g": 29.8,
+            "carbs_g": 19.2,
+            "fat_g": 25.3,
+            "fiber_g": 3.2,
+            "sodium_mg": 111.8,
+            "sugar_g": 0.0
+          },
+          "tags": [
+            "high_protein",
+            "pescatarian",
+            "gluten_free",
+            "dairy_free",
+            "mediterranean"
+          ],
+          "safety_check": {
+            "is_safe": true,
+            "violates_allergens": [],
+            "violates_dietary_rules": [],
+            "warnings": [],
+            "explanation": "Recipe passed all allergen and dietary safety constraints."
+          }
+        }
+      ],
+      "total_nutrition": {
+        "calories": 1098.8,
+        "protein_g": 59.3,
+        "carbs_g": 86.4,
+        "fat_g": 60.0,
+        "fiber_g": 21.9,
+        "sodium_mg": 292.7,
+        "sugar_g": 0.0
+      }
+    },
+    {
+      "day_name": "Tuesday",
+      "meals": [
+        {
+          "id": "rec_002_s2",
+          "title": "Chia Seed & Coconut Berry Pudding (2 servings)",
+          "description": "Naturally gluten-free and nut-free chia pudding soaked in oat milk, layered with sliced strawberries and bananas.",
+          "meal_type": "breakfast",
+          "servings": 2,
+          "prep_time_minutes": 5,
+          "cook_time_minutes": 0,
+          "ingredients": [
+            {
+              "name": "chia seeds",
+              "quantity": 60.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "strawberries",
+              "quantity": 200.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "banana",
+              "quantity": 160.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "blueberries",
+              "quantity": 100.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            }
+          ],
+          "instructions": [
+            "Mix chia seeds with water or seed milk and allow to set for 15 minutes.",
+            "Top with sliced strawberries, blueberries, and fresh banana coins."
+          ],
+          "nutrition": {
+            "calories": 277.5,
+            "protein_g": 6.9,
+            "carbs_g": 45.7,
+            "fat_g": 9.8,
+            "fiber_g": 15.6,
+            "sodium_mg": 7.1,
+            "sugar_g": 0.0
+          },
+          "tags": [
+            "vegan",
+            "vegetarian",
+            "gluten_free",
+            "dairy_free",
+            "nut_free"
+          ],
+          "safety_check": {
+            "is_safe": true,
+            "violates_allergens": [],
+            "violates_dietary_rules": [],
+            "warnings": [],
+            "explanation": "Recipe passed all allergen and dietary safety constraints."
+          }
+        },
+        {
+          "id": "rec_005",
+          "title": "Hearty Black Bean & Quinoa Fiesta Salad",
+          "description": "Zesty southwestern bowl packed with fiber-rich black beans, fluffy quinoa, bell pepper, and creamy avocado.",
+          "meal_type": "lunch",
+          "servings": 2,
+          "prep_time_minutes": 10,
+          "cook_time_minutes": 15,
+          "ingredients": [
+            {
+              "name": "canned black beans",
+              "quantity": 200.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "quinoa",
+              "quantity": 120.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "bell pepper",
+              "quantity": 100.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "avocado",
+              "quantity": 80.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "olive oil",
+              "quantity": 10.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            }
+          ],
+          "instructions": [
+            "Cook quinoa according to package instructions and let cool slightly.",
+            "Rinse and drain black beans.",
+            "Dice bell pepper and avocado into cubes.",
+            "Toss all ingredients together in a large bowl with olive oil, lime juice, and salt."
+          ],
+          "nutrition": {
+            "calories": 286.7,
+            "protein_g": 10.0,
+            "carbs_g": 35.2,
+            "fat_g": 12.6,
+            "fiber_g": 10.9,
+            "sodium_mg": 249.1,
+            "sugar_g": 0.0
+          },
+          "tags": [
+            "vegan",
+            "vegetarian",
+            "gluten_free",
+            "dairy_free",
+            "nut_free",
+            "high_fiber"
+          ],
+          "safety_check": {
+            "is_safe": true,
+            "violates_allergens": [],
+            "violates_dietary_rules": [],
+            "warnings": [],
+            "explanation": "Recipe passed all allergen and dietary safety constraints."
+          }
+        },
+        {
+          "id": "rec_008",
+          "title": "Garlic Herb Grilled Chicken with Roasted Sweet Potato",
+          "description": "Juicy tender chicken breast seasoned with garlic and olive oil, paired with roasted sweet potato cubes and asparagus.",
+          "meal_type": "dinner",
+          "servings": 2,
+          "prep_time_minutes": 10,
+          "cook_time_minutes": 25,
+          "ingredients": [
+            {
+              "name": "chicken breast",
+              "quantity": 300.0,
+              "unit": "g",
+              "category": "Meat & Seafood",
+              "notes": null
+            },
+            {
+              "name": "sweet potato",
+              "quantity": 250.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "asparagus",
+              "quantity": 150.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "garlic",
+              "quantity": 10.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "olive oil",
+              "quantity": 15.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            }
+          ],
+          "instructions": [
+            "Preheat oven to 400°F (200°C). Dice sweet potatoes into bite-sized cubes.",
+            "Toss sweet potatoes and asparagus with half the olive oil and roast for 20-25 minutes.",
+            "Season chicken breasts with minced garlic, remaining olive oil, salt, and pepper.",
+            "Grill or pan-sear chicken over medium-high heat for 6-7 minutes per side until internal temp reaches 165°F.",
+            "Plate grilled chicken with roasted sweet potatoes and tender asparagus."
+          ],
+          "nutrition": {
+            "calories": 443.8,
+            "protein_g": 50.4,
+            "carbs_g": 29.6,
+            "fat_g": 13.1,
+            "fiber_g": 5.4,
+            "sodium_mg": 182.2,
+            "sugar_g": 0.0
+          },
+          "tags": [
+            "high_protein",
+            "gluten_free",
+            "dairy_free",
+            "nut_free",
+            "clean_eating"
+          ],
+          "safety_check": {
+            "is_safe": true,
+            "violates_allergens": [],
+            "violates_dietary_rules": [],
+            "warnings": [],
+            "explanation": "Recipe passed all allergen and dietary safety constraints."
+          }
+        }
+      ],
+      "total_nutrition": {
+        "calories": 1008.0,
+        "protein_g": 67.3,
+        "carbs_g": 110.5,
+        "fat_g": 35.5,
+        "fiber_g": 31.9,
+        "sodium_mg": 438.4,
+        "sugar_g": 0.0
+      }
+    }
+  ],
+  "created_at": "2026-08-16T22:17:53.360256",
+  "notes": "Personalized 2-day plan optimized for 2 person(s)."
+}

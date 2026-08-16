@@ -1,0 +1,33 @@
+{
+  "user_id": "default_user",
+  "name": "Alex",
+  "household_size": 2,
+  "allergens": [
+    "peanuts"
+  ],
+  "dietary_restrictions": [
+    "gluten_free",
+    "keto"
+  ],
+  "disliked_ingredients": [
+    "cilantro",
+    "olives"
+  ],
+  "macro_targets": {
+    "calories": 2000,
+    "protein_g": 120.0,
+    "carbs_g": 200.0,
+    "fat_g": 65.0,
+    "fiber_g": 30.0,
+    "max_sodium_mg": 2300.0
+  },
+  "cooking_skill_level": "intermediate",
+  "max_prep_time_minutes": 45,
+  "available_appliances": [
+    "stovetop",
+    "oven",
+    "refrigerator"
+  ],
+  "created_at": "2026-08-16T21:57:40.661900",
+  "updated_at": "2026-08-16T21:57:40.661903"
+}
