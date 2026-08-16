@@ -1,23 +1,23 @@
 """Data models module."""
 
 from src.models.schemas import (
-    CommonAllergen,
-    DietaryRestriction,
-    MacroTarget,
-    UserProfile,
-    PantryItem,
-    Ingredient,
-    NutritionInfo,
-    SafetyCheckResult,
-    Recipe,
-    DayMealPlan,
-    WeeklyMealPlan,
-    GroceryItem,
-    GroceryList,
-    MealFeedback,
-    MealType,
     AgentRole,
     ChatMessage,
+    CommonAllergen,
+    DayMealPlan,
+    DietaryRestriction,
+    GroceryItem,
+    GroceryList,
+    Ingredient,
+    MacroTarget,
+    MealFeedback,
+    MealType,
+    NutritionInfo,
+    PantryItem,
+    Recipe,
+    SafetyCheckResult,
+    UserProfile,
+    WeeklyMealPlan,
 )
 
 __all__ = [

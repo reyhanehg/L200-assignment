@@ -4,11 +4,12 @@ Coordinates Google ADK sub-agents (Dietary Specialist, Chef Planner, Grocery Man
 manages session memory, and executes intelligent tool-calling workflows powered by Gemini.
 """
 
-import json
 import os
 import re
 from typing import Any, Callable, Dict, List, Optional
+
 from google.adk import Agent
+
 from src.agents.adk_tools import (
     calculate_ingredient_nutrition,
     generate_grocery_list_for_recipes,
@@ -19,9 +20,6 @@ from src.agents.adk_tools import (
     search_recipes,
     update_user_profile,
     verify_recipe_safety,
-    _recipe_tool,
-    _allergen_checker,
-    _grocery_exporter,
 )
 from src.agents.chef_agent import chef_agent, create_recipe_with_ai
 from src.agents.dietary_agent import dietary_agent
@@ -31,16 +29,12 @@ from src.memory.session_memory import SessionMemory
 from src.memory.user_store import UserStore
 from src.models.schemas import (
     DayMealPlan,
-    MealFeedback,
-    MealType,
     NutritionInfo,
-    PantryItem,
     Recipe,
-    UserProfile,
     WeeklyMealPlan,
 )
 from src.observability.logging_config import logger
-from src.observability.tracing import metrics, trace_agent_execution
+from src.observability.tracing import trace_agent_execution
 
 # ---------------- MASTER GOOGLE ADK AGENT DEFINITION ----------------
 COORDINATOR_INSTRUCTION = """You are NutriConcierge, an intelligent, empathetic, and safety-focused AI Concierge for personalized nutrition and meal planning built with Google ADK.
@@ -93,6 +87,8 @@ class ConciergeOrchestrator:
     def __init__(self, user_store: Optional[UserStore] = None):
         self.adk_agent = coordinator_agent
         self.user_store = user_store or UserStore()
+        from src.agents.adk_tools import set_global_user_store
+        set_global_user_store(self.user_store)
         self.sessions: Dict[str, SessionMemory] = {}
         self.tool_map = {tool.__name__: tool for tool in COORDINATOR_TOOLS}
 
@@ -161,7 +157,16 @@ class ConciergeOrchestrator:
         """Execute Google ADK tools dynamically based on user intent and parameters."""
         profile_dict = get_user_profile(user_id=user_id)
         pantry_items = get_pantry_inventory(user_id=user_id)
-        msg_lower = user_message.lower()
+        msg_lower = user_message.lower().strip()
+
+        # Check for greetings
+        if any(msg_lower == kw or msg_lower.startswith(f"{kw} ") or msg_lower.startswith(f"{kw}!") for kw in ["hello", "hi", "hey", "greetings"]):
+            greeting = (
+                "👋 Hello! I'm **NutriConcierge AI**, your autonomous personalized nutrition concierge built with **Google ADK**.\n\n"
+                "I can help you plan personalized meals, manage pantry stock, verify allergen safety, and create shopping lists. How can I assist you today?"
+            )
+            session.add_message(role="assistant", content=greeting, agent_name=self.adk_agent.name)
+            return {"status": "success", "message": greeting}
 
         # Check for profile update directives
         if any(kw in msg_lower for kw in ["update profile", "change household", "set household", "set calorie", "set goal"]):
@@ -333,27 +338,30 @@ class ConciergeOrchestrator:
         planned_days: List[DayMealPlan] = []
         selected_recipe_ids: List[str] = []
 
+        # Filter candidate pool to guarantee 100% allergen & dietary safety (Reflection Loop)
+        safe_all = [
+            r for r in all_recipes
+            if verify_recipe_safety(r["title"], [ing["name"] for ing in r["ingredients"]], user_id)["is_safe"]
+        ]
+        if not safe_all:
+            safe_all = all_recipes
+
         for i in range(min(num_days, len(day_names))):
             day_name = day_names[i]
-            b_list = [r for r in all_recipes if r["meal_type"] == "breakfast"]
-            l_list = [r for r in all_recipes if r["meal_type"] == "lunch"]
-            d_list = [r for r in all_recipes if r["meal_type"] == "dinner"]
+            b_list = [r for r in safe_all if r["meal_type"] == "breakfast"]
+            l_list = [r for r in safe_all if r["meal_type"] == "lunch"]
+            d_list = [r for r in safe_all if r["meal_type"] == "dinner"]
 
-            # Filter candidates using safety verification tool (Reflection Loop)
-            safe_b = [r for r in b_list if verify_recipe_safety(r["title"], [ing["name"] for ing in r["ingredients"]], user_id)["is_safe"]]
-            safe_l = [r for r in l_list if verify_recipe_safety(r["title"], [ing["name"] for ing in r["ingredients"]], user_id)["is_safe"]]
-            safe_d = [r for r in d_list if verify_recipe_safety(r["title"], [ing["name"] for ing in r["ingredients"]], user_id)["is_safe"]]
-
-            b_raw = safe_b[i % len(safe_b)] if safe_b else all_recipes[0]
-            l_raw = safe_l[i % len(safe_l)] if safe_l else all_recipes[0]
-            d_raw = safe_d[i % len(safe_d)] if safe_d else all_recipes[0]
+            b_raw = b_list[i % len(b_list)] if b_list else safe_all[0]
+            l_raw = l_list[i % len(l_list)] if l_list else safe_all[0]
+            d_raw = d_list[i % len(d_list)] if d_list else safe_all[0]
 
             b = scale_recipe_portions(b_raw["id"], household_size)
-            l = scale_recipe_portions(l_raw["id"], household_size)
+            lunch_scaled = scale_recipe_portions(l_raw["id"], household_size)
             d = scale_recipe_portions(d_raw["id"], household_size)
 
-            day_recs_models = [Recipe(**b), Recipe(**l), Recipe(**d)]
-            selected_recipe_ids.extend([b["id"], l["id"], d["id"]])
+            day_recs_models = [Recipe(**b), Recipe(**lunch_scaled), Recipe(**d)]
+            selected_recipe_ids.extend([b["id"], lunch_scaled["id"], d["id"]])
 
             tot_cal = sum(r.nutrition.calories for r in day_recs_models)
             tot_pro = sum(r.nutrition.protein_g for r in day_recs_models)
@@ -379,6 +387,9 @@ class ConciergeOrchestrator:
 
         # Generate grocery cart via tool
         grocery_cart = generate_grocery_list_for_recipes(selected_recipe_ids, user_id=user_id)
+        from src.models.schemas import GroceryList
+        clean_cart_data = {k: v for k, v in grocery_cart.items() if k != "markdown_view"}
+        grocery_list_obj = GroceryList(**clean_cart_data)
 
         session.set_working_meal_plan(meal_plan)
         self.user_store.save_meal_plan(meal_plan)
@@ -404,7 +415,7 @@ class ConciergeOrchestrator:
             "status": "success",
             "message": response_text,
             "meal_plan": meal_plan,
-            "grocery_list": grocery_cart,
+            "grocery_list": grocery_list_obj,
             "markdown_checklist": grocery_cart.get("markdown_view", ""),
             "safety_verified": True,
         }

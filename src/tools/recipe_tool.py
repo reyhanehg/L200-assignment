@@ -1,12 +1,12 @@
 """Recipe Search, Scaling, and Formatting Tool."""
 
 from typing import Dict, List, Optional
+
 from src.models.schemas import (
     Ingredient,
     MealType,
     NutritionInfo,
     Recipe,
-    UserProfile,
 )
 from src.tools.nutrition_analyzer import NutritionAnalyzerTool
 

@@ -4,9 +4,9 @@ Calculates calories, macronutrients, and micronutrients for ingredients and reci
 using standard nutritional references.
 """
 
-from typing import Any, Dict, List, Optional
-from src.models.schemas import Ingredient, MacroTarget, NutritionInfo, Recipe
+from typing import Any, Dict, Optional
 
+from src.models.schemas import Ingredient, MacroTarget, NutritionInfo, Recipe
 
 # Standard nutritional reference per 100g or standard unit
 NUTRITION_DATABASE: Dict[str, Dict[str, float]] = {

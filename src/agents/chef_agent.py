@@ -8,7 +8,9 @@ import json
 import os
 import uuid
 from typing import Any, Dict, List, Optional
+
 from google.adk import Agent
+
 from src.agents.adk_tools import get_pantry_inventory
 from src.config import settings
 from src.models.schemas import Ingredient, MealType, NutritionInfo, Recipe
@@ -140,7 +142,6 @@ def _synthesize_culinary_recipe(
     """Algorithmically craft a recipe when live API is unreachable."""
     is_keto = "keto" in [d.lower() for d in dietary_preferences] or "keto" in prompt.lower()
     is_vegan = "vegan" in [d.lower() for d in dietary_preferences] or "vegan" in prompt.lower()
-    is_gf = "gluten_free" in [d.lower() for d in dietary_preferences] or "gluten" in prompt.lower()
 
     ings = list(must_include_ingredients)
     rec_id = f"ai_rec_{uuid.uuid4().hex[:8]}"

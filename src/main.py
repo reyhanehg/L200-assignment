@@ -9,7 +9,6 @@ if str(ROOT_DIR) not in sys.path:
 
 from src.agents.coordinator import ConciergeCoordinator
 from src.config import settings
-from src.observability.logging_config import logger
 from src.observability.tracing import metrics
 
 

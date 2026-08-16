@@ -4,6 +4,7 @@ Defines deterministic, typed tool functions accessible by Google ADK Agents.
 """
 
 from typing import Any, Dict, List, Optional
+
 from src.memory.user_store import UserStore
 from src.models.schemas import (
     CommonAllergen,
@@ -12,13 +13,11 @@ from src.models.schemas import (
     MealFeedback,
     MealType,
     NutritionInfo,
-    PantryItem,
     Recipe,
-    UserProfile,
 )
 from src.tools.allergen_checker import AllergenSafetyCheckerTool
 from src.tools.grocery_exporter import GroceryCartExporterTool
-from src.tools.nutrition_analyzer import NUTRITION_DATABASE, NutritionAnalyzerTool
+from src.tools.nutrition_analyzer import NutritionAnalyzerTool
 from src.tools.pantry_tool import PantryInventoryTool
 from src.tools.recipe_tool import RecipeTool
 
@@ -29,6 +28,15 @@ _allergen_checker = AllergenSafetyCheckerTool()
 _pantry_tool = PantryInventoryTool()
 _grocery_exporter = GroceryCartExporterTool(pantry_tool=_pantry_tool)
 _nutrition_analyzer = NutritionAnalyzerTool()
+
+
+def set_global_user_store(store: UserStore) -> None:
+    """Set the active user store for tool functions."""
+    global _user_store, _pantry_tool, _grocery_exporter
+    _user_store = store
+    pantry_items = store.get_pantry("default_user")
+    _pantry_tool = PantryInventoryTool(initial_items=pantry_items)
+    _grocery_exporter = GroceryCartExporterTool(pantry_tool=_pantry_tool)
 
 
 def get_user_profile(user_id: str = "default_user") -> Dict[str, Any]:
@@ -159,6 +167,8 @@ def verify_recipe_safety(
         nutrition=NutritionInfo(),
     )
     check = _allergen_checker.check_recipe_safety(mock_recipe, profile)
+    from src.observability.tracing import metrics
+    metrics.record_safety_check(check.is_safe)
     return check.model_dump()
 
 

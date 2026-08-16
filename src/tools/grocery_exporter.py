@@ -3,15 +3,14 @@
 from collections import defaultdict
 from datetime import datetime
 from typing import Any, Dict, List, Optional
+
 from src.models.schemas import (
     GroceryItem,
     GroceryList,
-    PantryItem,
     Recipe,
     WeeklyMealPlan,
 )
 from src.tools.pantry_tool import PantryInventoryTool
-
 
 CATEGORY_ORDER = [
     "Produce",
@@ -104,7 +103,7 @@ class GroceryCartExporterTool:
     def format_markdown(self, grocery_list: GroceryList) -> str:
         """Format grocery list into an interactive markdown checklist."""
         lines = [
-            f"# 🛒 Grocery Shopping List",
+            "# 🛒 Grocery Shopping List",
             f"**Generated:** {grocery_list.generated_at.strftime('%Y-%m-%d %H:%M UTC')}",
             f"**Total Items to Buy:** {grocery_list.total_items_to_buy} | **Estimated Cost:** ${grocery_list.estimated_cost_usd:.2f}",
             "",

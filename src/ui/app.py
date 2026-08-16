@@ -6,17 +6,16 @@ ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
+
 import streamlit as st
-from datetime import date
+
 from src.agents.coordinator import ConciergeCoordinator
 from src.models.schemas import (
     CommonAllergen,
     DietaryRestriction,
     PantryItem,
-    UserProfile,
 )
 from src.observability.tracing import metrics
-
 
 st.set_page_config(
     page_title="NutriConcierge AI",
@@ -89,7 +88,7 @@ with st.sidebar:
         p_qty = st.number_input("Qty", min_value=1.0, value=100.0, step=10.0)
     with col2:
         p_unit = st.selectbox("Unit", ["g", "oz", "count", "cups", "tbsp"])
-    
+
     if st.button("➕ Add to Pantry", use_container_width=True):
         if p_name:
             current_pantry = coordinator.user_store.get_pantry(user_id)

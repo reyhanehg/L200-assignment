@@ -7,19 +7,19 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from typing import Any, Dict, List, Optional
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
 from src.agents.coordinator import ConciergeCoordinator
 from src.config import settings
 from src.models.schemas import (
     PantryItem,
     UserProfile,
-    WeeklyMealPlan,
 )
 from src.observability.logging_config import logger
 from src.observability.tracing import metrics
-
 
 app = FastAPI(
     title=settings.app_name,

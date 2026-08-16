@@ -4,6 +4,7 @@ import functools
 import time
 from contextlib import contextmanager
 from typing import Any, Callable, Dict, List, Optional
+
 from src.config import settings
 from src.observability.logging_config import logger
 
@@ -11,7 +12,7 @@ try:
     from opentelemetry import trace
     from opentelemetry.sdk.resources import Resource
     from opentelemetry.sdk.trace import TracerProvider
-    from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter
+    from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
 
     provider = TracerProvider(
         resource=Resource.create({"service.name": settings.app_name, "service.version": settings.app_version})
