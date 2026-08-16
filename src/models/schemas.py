@@ -170,7 +170,7 @@ class GroceryList(BaseModel):
 class MealFeedback(BaseModel):
     """User feedback and rating for a prepared meal."""
     recipe_id: str
-    recipe_title: str
+    recipe_title: str = ""
     rating: int = Field(..., ge=1, le=5, description="1 to 5 stars")
     comments: Optional[str] = None
     cooked_at: datetime = Field(default_factory=datetime.utcnow)

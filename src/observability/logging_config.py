@@ -1,39 +1,34 @@
-"""Structured Logging Configuration for NutriConcierge."""
+"""Structured Logging Configuration with PII Scrubbing for NutriConcierge."""
 
 import json
 import logging
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict
 
 from src.config import settings
+from src.observability.pii_scrubber import PIIScrubber
 
 
 class JSONFormatter(logging.Formatter):
-    """Custom JSON formatter for structured observability logs."""
+    """Custom JSON formatter with automated PII scrubbing for structured observability logs."""
 
     def format(self, record: logging.LogRecord) -> str:
         log_entry: Dict[str, Any] = {
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "level": record.levelname,
             "logger": record.name,
-            "message": record.getMessage(),
+            "message": PIIScrubber.scrub_text(record.getMessage()),
         }
 
         # Attach custom extra context if present
-        if hasattr(record, "session_id"):
-            log_entry["session_id"] = record.session_id
-        if hasattr(record, "agent_name"):
-            log_entry["agent_name"] = record.agent_name
-        if hasattr(record, "tool_name"):
-            log_entry["tool_name"] = record.tool_name
-        if hasattr(record, "duration_ms"):
-            log_entry["duration_ms"] = record.duration_ms
-        if hasattr(record, "trace_id"):
-            log_entry["trace_id"] = record.trace_id
+        for attr in ["session_id", "agent_name", "tool_name", "duration_ms", "trace_id", "action_intended", "status"]:
+            if hasattr(record, attr):
+                val = getattr(record, attr)
+                log_entry[attr] = PIIScrubber.scrub_data(val)
 
         if record.exc_info:
-            log_entry["exception"] = self.formatException(record.exc_info)
+            log_entry["exception"] = PIIScrubber.scrub_text(self.formatException(record.exc_info))
 
         return json.dumps(log_entry)
 

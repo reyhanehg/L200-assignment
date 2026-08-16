@@ -6,105 +6,113 @@
       "day_name": "Monday",
       "meals": [
         {
-          "id": "rec_002_s2",
-          "title": "Chia Seed & Coconut Berry Pudding (2 servings)",
-          "description": "Naturally gluten-free and nut-free chia pudding soaked in oat milk, layered with sliced strawberries and bananas.",
+          "id": "rec_001",
+          "title": "Protein Power Berry Oatmeal with Almonds",
+          "description": "Warm rolled oats simmered with almond milk, topped with antioxidant-rich blueberries, chia seeds, and sliced almonds.",
           "meal_type": "breakfast",
-          "servings": 2,
+          "servings": 1,
           "prep_time_minutes": 5,
-          "cook_time_minutes": 0,
+          "cook_time_minutes": 5,
           "ingredients": [
             {
-              "name": "chia seeds",
-              "quantity": 60.0,
+              "name": "rolled oats",
+              "quantity": 50.0,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
             },
             {
-              "name": "strawberries",
+              "name": "almond milk",
               "quantity": 200.0,
               "unit": "g",
-              "category": "Produce",
-              "notes": null
-            },
-            {
-              "name": "banana",
-              "quantity": 160.0,
-              "unit": "g",
-              "category": "Produce",
+              "category": "Dairy & Alternatives",
               "notes": null
             },
             {
               "name": "blueberries",
-              "quantity": 100.0,
+              "quantity": 75.0,
               "unit": "g",
               "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "chia seeds",
+              "quantity": 15.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "almonds",
+              "quantity": 20.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
               "notes": null
             }
           ],
           "instructions": [
-            "Mix chia seeds with water or seed milk and allow to set for 15 minutes.",
-            "Top with sliced strawberries, blueberries, and fresh banana coins."
+            "Combine rolled oats and almond milk in a small saucepan over medium heat.",
+            "Cook for 4-5 minutes, stirring occasionally until creamy.",
+            "Pour into a bowl and top with fresh blueberries, sliced almonds, and chia seeds."
           ],
           "nutrition": {
-            "calories": 277.5,
-            "protein_g": 6.9,
-            "carbs_g": 45.7,
-            "fat_g": 9.8,
-            "fiber_g": 15.6,
-            "sodium_mg": 7.1,
+            "calories": 456.0,
+            "protein_g": 16.6,
+            "carbs_g": 55.2,
+            "fat_g": 20.7,
+            "fiber_g": 15.2,
+            "sodium_mg": 144.4,
             "sugar_g": 0.0
           },
           "tags": [
             "vegan",
             "vegetarian",
-            "gluten_free",
             "dairy_free",
-            "nut_free"
+            "high_fiber",
+            "quick"
           ],
           "safety_check": null
         },
         {
-          "id": "rec_004",
-          "title": "Crispy Tofu & Sesame Veggie Stir-Fry",
+          "id": "rec_004_s1",
+          "title": "Crispy Tofu & Sesame Veggie Stir-Fry (1 servings)",
           "description": "Golden pan-fried tofu cubes tossed with vibrant broccoli, red bell pepper, garlic, and toasted sesame seeds.",
           "meal_type": "lunch",
-          "servings": 2,
+          "servings": 1,
           "prep_time_minutes": 15,
           "cook_time_minutes": 10,
           "ingredients": [
             {
               "name": "tofu",
-              "quantity": 250.0,
+              "quantity": 125.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "broccoli",
-              "quantity": 150.0,
+              "quantity": 75.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "bell pepper",
-              "quantity": 100.0,
+              "quantity": 50.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "garlic",
-              "quantity": 10.0,
+              "quantity": 5.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "olive oil",
-              "quantity": 15.0,
+              "quantity": 7.5,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
@@ -135,45 +143,45 @@
           "safety_check": null
         },
         {
-          "id": "rec_007",
-          "title": "Mediterranean Quinoa Bowl with Lemon Herb Salmon",
+          "id": "rec_007_s1",
+          "title": "Mediterranean Quinoa Bowl with Lemon Herb Salmon (1 servings)",
           "description": "Hearty whole grain quinoa bowl topped with pan-seared wild salmon, fresh cucumbers, and olive oil.",
           "meal_type": "dinner",
-          "servings": 2,
+          "servings": 1,
           "prep_time_minutes": 15,
           "cook_time_minutes": 15,
           "ingredients": [
             {
               "name": "salmon fillet",
-              "quantity": 250.0,
+              "quantity": 125.0,
               "unit": "g",
               "category": "Meat & Seafood",
               "notes": null
             },
             {
               "name": "quinoa",
-              "quantity": 150.0,
+              "quantity": 75.0,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
             },
             {
               "name": "cucumber",
-              "quantity": 100.0,
+              "quantity": 50.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "spinach",
-              "quantity": 80.0,
+              "quantity": 40.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "olive oil",
-              "quantity": 15.0,
+              "quantity": 7.5,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
@@ -205,10 +213,10 @@
         }
       ],
       "total_nutrition": {
-        "calories": 920.3,
-        "protein_g": 49.6,
-        "carbs_g": 76.9,
-        "fat_g": 49.1,
+        "calories": 1098.8,
+        "protein_g": 59.3,
+        "carbs_g": 86.4,
+        "fat_g": 60.0,
         "fiber_g": 0.0,
         "sodium_mg": 0.0,
         "sugar_g": 0.0
@@ -218,108 +226,105 @@
       "day_name": "Tuesday",
       "meals": [
         {
-          "id": "rec_010_s2",
-          "title": "Keto Avocado & Spinach Scramble (2 servings)",
-          "description": "Whisked farm-fresh eggs scrambled in olive oil with tender baby spinach and sliced ripe avocado. Zero net carbs.",
+          "id": "rec_002",
+          "title": "Chia Seed & Coconut Berry Pudding",
+          "description": "Naturally gluten-free and nut-free chia pudding soaked in oat milk, layered with sliced strawberries and bananas.",
           "meal_type": "breakfast",
-          "servings": 2,
+          "servings": 1,
           "prep_time_minutes": 5,
-          "cook_time_minutes": 5,
+          "cook_time_minutes": 0,
           "ingredients": [
             {
-              "name": "eggs",
-              "quantity": 240.0,
-              "unit": "g",
-              "category": "Dairy & Refrigerated",
-              "notes": null
-            },
-            {
-              "name": "spinach",
-              "quantity": 120.0,
-              "unit": "g",
-              "category": "Produce",
-              "notes": null
-            },
-            {
-              "name": "avocado",
-              "quantity": 120.0,
-              "unit": "g",
-              "category": "Produce",
-              "notes": null
-            },
-            {
-              "name": "olive oil",
-              "quantity": 20.0,
-              "unit": "g",
-              "category": "Pantry & Dry Goods",
-              "notes": null
-            }
-          ],
-          "instructions": [
-            "Whisk eggs with a pinch of sea salt and black pepper.",
-            "Warm olive oil in a non-stick skillet and sauté baby spinach for 1 minute.",
-            "Pour in whisked eggs and gently stir until soft, creamy curds form.",
-            "Serve immediately topped with sliced fresh avocado."
-          ],
-          "nutrition": {
-            "calories": 369.8,
-            "protein_g": 18.0,
-            "carbs_g": 8.1,
-            "fat_g": 30.4,
-            "fiber_g": 5.3,
-            "sodium_mg": 222.2,
-            "sugar_g": 0.0
-          },
-          "tags": [
-            "keto",
-            "low_carb",
-            "vegetarian",
-            "gluten_free",
-            "high_protein",
-            "healthy_fats"
-          ],
-          "safety_check": null
-        },
-        {
-          "id": "rec_005",
-          "title": "Hearty Black Bean & Quinoa Fiesta Salad",
-          "description": "Zesty southwestern bowl packed with fiber-rich black beans, fluffy quinoa, bell pepper, and creamy avocado.",
-          "meal_type": "lunch",
-          "servings": 2,
-          "prep_time_minutes": 10,
-          "cook_time_minutes": 15,
-          "ingredients": [
-            {
-              "name": "canned black beans",
-              "quantity": 200.0,
+              "name": "chia seeds",
+              "quantity": 30.0,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
             },
             {
-              "name": "quinoa",
-              "quantity": 120.0,
-              "unit": "g",
-              "category": "Pantry & Dry Goods",
-              "notes": null
-            },
-            {
-              "name": "bell pepper",
+              "name": "strawberries",
               "quantity": 100.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
-              "name": "avocado",
+              "name": "banana",
               "quantity": 80.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
+              "name": "blueberries",
+              "quantity": 50.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            }
+          ],
+          "instructions": [
+            "Mix chia seeds with water or seed milk and allow to set for 15 minutes.",
+            "Top with sliced strawberries, blueberries, and fresh banana coins."
+          ],
+          "nutrition": {
+            "calories": 277.5,
+            "protein_g": 6.9,
+            "carbs_g": 45.7,
+            "fat_g": 9.8,
+            "fiber_g": 15.6,
+            "sodium_mg": 7.1,
+            "sugar_g": 0.0
+          },
+          "tags": [
+            "vegan",
+            "vegetarian",
+            "gluten_free",
+            "dairy_free",
+            "nut_free"
+          ],
+          "safety_check": null
+        },
+        {
+          "id": "rec_005_s1",
+          "title": "Hearty Black Bean & Quinoa Fiesta Salad (1 servings)",
+          "description": "Zesty southwestern bowl packed with fiber-rich black beans, fluffy quinoa, bell pepper, and creamy avocado.",
+          "meal_type": "lunch",
+          "servings": 1,
+          "prep_time_minutes": 10,
+          "cook_time_minutes": 15,
+          "ingredients": [
+            {
+              "name": "canned black beans",
+              "quantity": 100.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "quinoa",
+              "quantity": 60.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "bell pepper",
+              "quantity": 50.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "avocado",
+              "quantity": 40.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
               "name": "olive oil",
-              "quantity": 10.0,
+              "quantity": 5.0,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
@@ -351,74 +356,81 @@
           "safety_check": null
         },
         {
-          "id": "rec_011_s2",
-          "title": "Keto Lemon Butter Salmon with Asparagus (2 servings)",
-          "description": "Pan-seared wild salmon fillet cooked in olive oil and lemon juice, served alongside tender roasted asparagus spears.",
+          "id": "rec_008_s1",
+          "title": "Garlic Herb Grilled Chicken with Roasted Sweet Potato (1 servings)",
+          "description": "Juicy tender chicken breast seasoned with garlic and olive oil, paired with roasted sweet potato cubes and asparagus.",
           "meal_type": "dinner",
-          "servings": 2,
+          "servings": 1,
           "prep_time_minutes": 10,
-          "cook_time_minutes": 12,
+          "cook_time_minutes": 25,
           "ingredients": [
             {
-              "name": "salmon fillet",
-              "quantity": 400.0,
+              "name": "chicken breast",
+              "quantity": 150.0,
               "unit": "g",
               "category": "Meat & Seafood",
               "notes": null
             },
             {
+              "name": "sweet potato",
+              "quantity": 125.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
               "name": "asparagus",
-              "quantity": 300.0,
+              "quantity": 75.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "garlic",
-              "quantity": 10.0,
+              "quantity": 5.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "olive oil",
-              "quantity": 30.0,
+              "quantity": 7.5,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
             }
           ],
           "instructions": [
-            "Season salmon fillet with salt, garlic, and freshly cracked black pepper.",
-            "Sear salmon in hot olive oil for 4 minutes per side until crisp and golden.",
-            "In the same pan, sauté asparagus spears for 4-5 minutes until tender-crisp.",
-            "Plate salmon with asparagus and drizzle with pan juices."
+            "Preheat oven to 400°F (200°C). Dice sweet potatoes into bite-sized cubes.",
+            "Toss sweet potatoes and asparagus with half the olive oil and roast for 20-25 minutes.",
+            "Season chicken breasts with minced garlic, remaining olive oil, salt, and pepper.",
+            "Grill or pan-sear chicken over medium-high heat for 6-7 minutes per side until internal temp reaches 165°F.",
+            "Plate grilled chicken with roasted sweet potatoes and tender asparagus."
           ],
           "nutrition": {
-            "calories": 586.1,
-            "protein_g": 43.6,
-            "carbs_g": 7.5,
-            "fat_g": 41.2,
-            "fiber_g": 3.3,
-            "sodium_mg": 122.2,
+            "calories": 443.8,
+            "protein_g": 50.4,
+            "carbs_g": 29.6,
+            "fat_g": 13.1,
+            "fiber_g": 5.4,
+            "sodium_mg": 182.2,
             "sugar_g": 0.0
           },
           "tags": [
-            "keto",
-            "low_carb",
+            "high_protein",
             "gluten_free",
             "dairy_free",
-            "high_protein",
-            "pescatarian"
+            "nut_free",
+            "clean_eating"
           ],
           "safety_check": null
         }
       ],
       "total_nutrition": {
-        "calories": 1242.6,
-        "protein_g": 71.6,
-        "carbs_g": 50.8,
-        "fat_g": 84.2,
+        "calories": 1008.0,
+        "protein_g": 67.3,
+        "carbs_g": 110.5,
+        "fat_g": 35.5,
         "fiber_g": 0.0,
         "sodium_mg": 0.0,
         "sugar_g": 0.0
@@ -428,105 +440,113 @@
       "day_name": "Wednesday",
       "meals": [
         {
-          "id": "rec_002_s2",
-          "title": "Chia Seed & Coconut Berry Pudding (2 servings)",
-          "description": "Naturally gluten-free and nut-free chia pudding soaked in oat milk, layered with sliced strawberries and bananas.",
+          "id": "rec_003",
+          "title": "Avocado & Spinach Scramble on Toast",
+          "description": "Fluffy scrambled eggs folded with baby spinach, served over whole wheat toast with sliced creamy avocado.",
           "meal_type": "breakfast",
-          "servings": 2,
+          "servings": 1,
           "prep_time_minutes": 5,
-          "cook_time_minutes": 0,
+          "cook_time_minutes": 5,
           "ingredients": [
             {
-              "name": "chia seeds",
-              "quantity": 60.0,
-              "unit": "g",
-              "category": "Pantry & Dry Goods",
-              "notes": null
-            },
-            {
-              "name": "strawberries",
-              "quantity": 200.0,
-              "unit": "g",
-              "category": "Produce",
-              "notes": null
-            },
-            {
-              "name": "banana",
-              "quantity": 160.0,
-              "unit": "g",
-              "category": "Produce",
-              "notes": null
-            },
-            {
-              "name": "blueberries",
+              "name": "eggs",
               "quantity": 100.0,
               "unit": "g",
-              "category": "Produce",
-              "notes": null
-            }
-          ],
-          "instructions": [
-            "Mix chia seeds with water or seed milk and allow to set for 15 minutes.",
-            "Top with sliced strawberries, blueberries, and fresh banana coins."
-          ],
-          "nutrition": {
-            "calories": 277.5,
-            "protein_g": 6.9,
-            "carbs_g": 45.7,
-            "fat_g": 9.8,
-            "fiber_g": 15.6,
-            "sodium_mg": 7.1,
-            "sugar_g": 0.0
-          },
-          "tags": [
-            "vegan",
-            "vegetarian",
-            "gluten_free",
-            "dairy_free",
-            "nut_free"
-          ],
-          "safety_check": null
-        },
-        {
-          "id": "rec_006",
-          "title": "Mediterranean Chickpea & Cucumber Salad",
-          "description": "Refreshing and protein-dense salad with chickpeas, diced cucumber, cherry tomatoes, and extra virgin olive oil.",
-          "meal_type": "lunch",
-          "servings": 2,
-          "prep_time_minutes": 10,
-          "cook_time_minutes": 0,
-          "ingredients": [
-            {
-              "name": "chickpeas",
-              "quantity": 250.0,
-              "unit": "g",
-              "category": "Pantry & Dry Goods",
+              "category": "Dairy & Refrigerated",
               "notes": null
             },
             {
-              "name": "cucumber",
-              "quantity": 150.0,
+              "name": "spinach",
+              "quantity": 50.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
-              "name": "tomato",
-              "quantity": 120.0,
+              "name": "whole wheat bread",
+              "quantity": 60.0,
+              "unit": "g",
+              "category": "Bakery",
+              "notes": null
+            },
+            {
+              "name": "avocado",
+              "quantity": 50.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "olive oil",
-              "quantity": 15.0,
+              "quantity": 5.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            }
+          ],
+          "instructions": [
+            "Whisk eggs in a bowl with a pinch of black pepper.",
+            "Toast whole wheat bread slices until golden brown.",
+            "Warm olive oil in a skillet, sauté spinach for 1 minute until wilted, then pour in whisked eggs.",
+            "Gently stir over low heat until soft curds form.",
+            "Top toast with mashed avocado and the warm scrambled eggs."
+          ],
+          "nutrition": {
+            "calories": 426.9,
+            "protein_g": 22.8,
+            "carbs_g": 31.3,
+            "fat_g": 24.0,
+            "fiber_g": 8.1,
+            "sodium_mg": 455.1,
+            "sugar_g": 0.0
+          },
+          "tags": [
+            "vegetarian",
+            "high_protein",
+            "quick"
+          ],
+          "safety_check": null
+        },
+        {
+          "id": "rec_006_s1",
+          "title": "Mediterranean Chickpea & Cucumber Salad (1 servings)",
+          "description": "Refreshing and protein-dense salad with chickpeas, diced cucumber, cherry tomatoes, and extra virgin olive oil.",
+          "meal_type": "lunch",
+          "servings": 1,
+          "prep_time_minutes": 10,
+          "cook_time_minutes": 0,
+          "ingredients": [
+            {
+              "name": "chickpeas",
+              "quantity": 125.0,
+              "unit": "g",
+              "category": "Pantry & Dry Goods",
+              "notes": null
+            },
+            {
+              "name": "cucumber",
+              "quantity": 75.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "tomato",
+              "quantity": 60.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "olive oil",
+              "quantity": 7.5,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
             },
             {
               "name": "garlic",
-              "quantity": 5.0,
+              "quantity": 2.5,
               "unit": "g",
               "category": "Produce",
               "notes": null
@@ -557,86 +577,87 @@
           "safety_check": null
         },
         {
-          "id": "rec_007",
-          "title": "Mediterranean Quinoa Bowl with Lemon Herb Salmon",
-          "description": "Hearty whole grain quinoa bowl topped with pan-seared wild salmon, fresh cucumbers, and olive oil.",
+          "id": "rec_009_s1",
+          "title": "Savory Red Lentil & Spinach Dahl (1 servings)",
+          "description": "A fragrant, comforting stew of tender red lentils simmered with garlic, sweet potato, and fresh baby spinach.",
           "meal_type": "dinner",
-          "servings": 2,
-          "prep_time_minutes": 15,
-          "cook_time_minutes": 15,
+          "servings": 1,
+          "prep_time_minutes": 10,
+          "cook_time_minutes": 20,
           "ingredients": [
             {
-              "name": "salmon fillet",
-              "quantity": 250.0,
-              "unit": "g",
-              "category": "Meat & Seafood",
-              "notes": null
-            },
-            {
-              "name": "quinoa",
-              "quantity": 150.0,
+              "name": "lentils",
+              "quantity": 100.0,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
             },
             {
-              "name": "cucumber",
-              "quantity": 100.0,
+              "name": "spinach",
+              "quantity": 50.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
-              "name": "spinach",
-              "quantity": 80.0,
+              "name": "sweet potato",
+              "quantity": 75.0,
+              "unit": "g",
+              "category": "Produce",
+              "notes": null
+            },
+            {
+              "name": "garlic",
+              "quantity": 5.0,
               "unit": "g",
               "category": "Produce",
               "notes": null
             },
             {
               "name": "olive oil",
-              "quantity": 15.0,
+              "quantity": 5.0,
               "unit": "g",
               "category": "Pantry & Dry Goods",
               "notes": null
             }
           ],
           "instructions": [
-            "Rinse quinoa and simmer in 2 cups of water for 15 minutes until fluffy.",
-            "Season salmon with salt, pepper, and olive oil.",
-            "Pan-sear salmon on medium-high heat for 4-5 minutes per side until golden.",
-            "Assemble bowls with quinoa, fresh baby spinach, sliced cucumbers, and flake the salmon over top."
+            "Sauté minced garlic in olive oil in a deep pot until fragrant.",
+            "Add diced sweet potato and rinsed red lentils with 3 cups of water.",
+            "Simmer on medium-low heat for 18 minutes until lentils are soft and creamy.",
+            "Stir in fresh baby spinach during the last 2 minutes until wilted."
           ],
           "nutrition": {
-            "calories": 433.0,
-            "protein_g": 29.8,
-            "carbs_g": 19.2,
-            "fat_g": 25.3,
-            "fiber_g": 3.2,
-            "sodium_mg": 111.8,
+            "calories": 243.6,
+            "protein_g": 11.9,
+            "carbs_g": 38.5,
+            "fat_g": 5.8,
+            "fiber_g": 11.3,
+            "sodium_mg": 83.7,
             "sugar_g": 0.0
           },
           "tags": [
-            "high_protein",
-            "pescatarian",
+            "vegan",
+            "vegetarian",
             "gluten_free",
             "dairy_free",
-            "mediterranean"
+            "nut_free",
+            "high_fiber"
           ],
           "safety_check": null
         }
       ],
       "total_nutrition": {
-        "calories": 1007.6,
-        "protein_g": 49.0,
-        "carbs_g": 105.1,
-        "fat_g": 46.0,
+        "calories": 967.6,
+        "protein_g": 47.0,
+        "carbs_g": 110.0,
+        "fat_g": 40.7,
         "fiber_g": 0.0,
         "sodium_mg": 0.0,
         "sugar_g": 0.0
       }
     }
   ],
-  "created_at": "2026-08-16T23:02:00.922542",
-  "notes": "Google ADK 3-day Gluten_Free/Keto meal plan for 2 person(s)."
+  "created_at": "2026-08-16T23:28:05.551217",
+  "notes": "Google ADK 3-day meal plan for 1 person(s)."
 }

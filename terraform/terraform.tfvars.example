@@ -1,0 +1,6 @@
+project_id      = "your-gcp-project-id"
+region          = "us-central1"
+environment     = "prod"
+app_name        = "nutri-concierge"
+container_image = "us-central1-docker.pkg.dev/your-gcp-project-id/nutri-concierge-repo/nutriconcierge:latest"
+gemini_api_key  = "AIzaSy_YOUR_GEMINI_API_KEY_HERE"

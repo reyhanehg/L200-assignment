@@ -55,7 +55,7 @@ graph TD
 ```
 
 ### 2.1 Pillar 1: Tool & Interface Design
-- **Custom ADK Tools**:
+- **Deterministic Google ADK Tools (`src/agents/adk_tools.py`)**:
   - `NutritionAnalyzerTool`: Calculates exact caloric breakdown, macronutrients (proteins, carbs, fats), micronutrients, and glycemic loads.
   - `AllergenSafetyCheckerTool`: Deterministic verification tool scanning ingredient lists against user allergy profiles to guarantee zero dangerous hallucinations.
   - `PantryInventoryTool`: CRUD operations on household pantry stock with shelf-life tracking.
@@ -66,31 +66,48 @@ graph TD
   - CLI & REST API for headless integration.
 
 ### 2.2 Pillar 2: Context & Memory
-- **Short-Term Context**: Manages multi-turn conversation state, iterative meal plan edits, and active session history.
-- **Long-Term Memory**:
-  - **User Profile Memory**: Dietary preferences (e.g., vegan, keto, low-sodium), allergens, cooking skill level, target calories.
-  - **Pantry & Equipment State**: Tracked ingredients on hand and kitchen appliances (e.g., air fryer, instant pot).
-  - **Episodic Meal History & Feedback**: Stores past meal ratings, liked/disliked recipes, and dietary compliance trends to continuously improve recommendations over time.
+- **Short-Term Context**: Manages multi-turn conversation state, iterative meal plan edits, and active session history using sliding-window `SessionMemory`.
+- **Relational Database State Persistence (`DatabaseStore` in `src/memory/db_store.py`)**:
+  - Replaces flat file persistence with an ACID-compliant **SQLite relational database** (`nutriconcierge.db`) containing indexed tables:
+    - `user_profiles`: Stores health goals, strict allergens, dietary restrictions, and macro targets.
+    - `pantry_items`: Relational inventory with quantities, units, categories, and expiration dates.
+    - `meal_plans`: Persisted weekly and multi-day meal plans with foreign keys.
+    - `meal_feedback`: Historical recipe ratings and comments.
+- **Asynchronous & Background Memory Tasks (`AsyncMemoryManager` in `src/memory/async_memory.py`)**:
+  - Thread-pool worker engine (`ThreadPoolExecutor`) executing non-blocking background persistence tasks (`dispatch_save_profile_background`, `dispatch_save_pantry_background`, `dispatch_save_meal_plan_background`) without blocking user-facing request latency.
 
 ### 2.3 Pillar 3: Orchestration & Logic
-- **Hierarchical Multi-Agent Architecture**:
+- **Hierarchical Google ADK Architecture**:
   - **Concierge Coordinator**: Dispatches user intents, coordinates planning workflows, and synthesizes conversational responses.
   - **Dietary & Safety Agent**: Enforces health constraints and runs reflection loops to validate safety.
-  - **Executive Chef Agent**: Generates recipes optimizing for taste variety, prep time, and ingredient overlap (reducing waste).
+  - **Executive Chef Agent**: Generative AI culinary agent (`create_recipe_with_ai`) formulating custom recipes tailored to cravings, pantry inventory, and dietary patterns.
   - **Pantry & Grocery Agent**: Computes missing delta between pantry stock and recipes to generate lean grocery lists.
-- **Guardrail Reflection Loop**: If the Chef Agent drafts a meal with an ingredient violating safety constraints, the Dietary Agent rejects the plan and triggers an automated correction loop before presenting it to the user.
+- **Strategic Model Routing (`ModelRouter` in `src/agents/model_router.py`)**:
+  - Dynamically routes tasks to the optimal Gemini model tier:
+    - **Flash Tier (`gemini-1.5-flash`)**: Triage, intent classification, pantry audits, and ingredient nutrition lookups (optimizing for speed and cost efficiency).
+    - **Reasoning Tier (`gemini-1.5-pro`)**: Combinatorial multi-day planning, AI recipe formulation, and multi-factor safety reflection verification.
+- **Human-in-the-Loop (HITL) Action Confirmation Hooks (`HITLConfirmationManager` in `src/agents/hitl_hooks.py`)**:
+  - Enforces deterministic approval gates before executing state-mutating actions (updating profile allergens, modifying pantry stock, overwriting meal plans).
+  - Generates structured proposals (`ActionProposal`) supporting explicit user approval (`approve_and_execute`) or cancellation (`reject`).
 
 ### 2.4 Pillar 4: Observability & Tracing
-- **Telemetry & Tracing**: OpenTelemetry instrumentation capturing agent execution graphs, sub-agent handoffs, tool execution latency, and token consumption.
-- **Evaluation & Benchmarks**: Automated evaluation suite measuring:
-  - Allergen safety compliance (100% pass requirement on safety tests).
-  - Nutritional target adherence error margin.
-  - Tool calling accuracy and execution reliability.
+- **PII Redaction & Scrubbing Pipeline (`PIIScrubber` in `src/observability/pii_scrubber.py`)**:
+  - Automated regex token sanitization redacting emails, phone numbers, credit card numbers, SSNs, and API keys across all logging formatters (`JSONFormatter`), OpenTelemetry span attributes, and session memory buffers.
+- **Pre-Execution Intent Logging (`ACTION_INTENDED`)**:
+  - Logs intended operations and parameters *prior* to agent/tool execution, and logs `ACTION_COMPLETED` with execution duration upon finish.
+- **Distributed Tracing & Metrics**: OpenTelemetry instrumentation capturing execution spans, latencies, and 100% safety guardrail verification pass rates.
 
 ### 2.5 Pillar 5: Infrastructure & CI/CD
-- **Containerization**: Multi-stage `Dockerfile` and `docker-compose.yml` for reproducible local and cloud deployment.
-- **Testing Suite**: Comprehensive unit tests, integration tests, and mock agent evaluation test suites using `pytest` and `unittest`.
-- **CI/CD Pipeline**: GitHub Actions workflow (`.github/workflows/ci.yml`) running linting (`ruff`/`black`), type checking (`mypy`), automated tests, and container image validation on every push.
+- **Infrastructure as Code with Terraform (`terraform/`)**:
+  - Complete Terraform configuration (`main.tf`, `variables.tf`, `outputs.tf`) provisioning:
+    - **Google Cloud Run (v2)** serverless service.
+    - **Google Cloud Secret Manager** secret (`gemini-api-key`) with least-privilege IAM binding (`roles/secretmanager.secretAccessor`).
+    - **Google Artifact Registry** container repository.
+    - Least-privilege IAM service accounts (`roles/aiplatform.user`, `roles/logging.logWriter`, `roles/cloudtrace.agent`).
+- **Secret Manager Integration (`load_secret_from_secret_manager` in `src/config.py`)**:
+  - Robust secret injection fetching credentials from Google Cloud Secret Manager with graceful environment fallback.
+- **CI/CD Pipeline (`.github/workflows/ci.yml`)**:
+  - GitHub Actions workflow testing Python 3.10, 3.11, and 3.12 across Ruff linting, Pytest test suite & safety evaluations, CLI execution, Terraform infrastructure validation (`terraform validate`), and Docker image builds.
 
 ---
 

@@ -24,6 +24,8 @@ from src.agents.adk_tools import (
 from src.agents.chef_agent import chef_agent, create_recipe_with_ai
 from src.agents.dietary_agent import dietary_agent
 from src.agents.grocery_agent import grocery_agent
+from src.agents.hitl_hooks import ActionType, HITLConfirmationManager
+from src.agents.model_router import ModelRouter
 from src.config import settings
 from src.memory.session_memory import SessionMemory
 from src.memory.user_store import UserStore
@@ -34,6 +36,7 @@ from src.models.schemas import (
     WeeklyMealPlan,
 )
 from src.observability.logging_config import logger
+from src.observability.pii_scrubber import PIIScrubber
 from src.observability.tracing import trace_agent_execution
 
 # ---------------- MASTER GOOGLE ADK AGENT DEFINITION ----------------
@@ -82,7 +85,7 @@ root_agent = coordinator_agent
 
 # ---------------- GOOGLE ADK ORCHESTRATION & RUNNER ----------------
 class ConciergeOrchestrator:
-    """Executes Google ADK agent workflows, LLM tool calling, session memory, and reflection loops."""
+    """Executes Google ADK agent workflows, strategic model routing, HITL hooks, and reflection loops."""
 
     def __init__(self, user_store: Optional[UserStore] = None):
         self.adk_agent = coordinator_agent
@@ -92,11 +95,28 @@ class ConciergeOrchestrator:
         self.sessions: Dict[str, SessionMemory] = {}
         self.tool_map = {tool.__name__: tool for tool in COORDINATOR_TOOLS}
 
+        # Strategic Model Routing Engine
+        self.model_router = ModelRouter(
+            flash_model=settings.gemini_flash_model,
+            pro_model=settings.gemini_model,
+        )
+
+        # Human-in-the-Loop Confirmation Manager
+        self.hitl_manager = HITLConfirmationManager()
+        self.hitl_manager.register_handler(
+            ActionType.UPDATE_PROFILE,
+            lambda payload: update_user_profile(**payload),
+        )
+        self.hitl_manager.register_handler(
+            ActionType.OVERWRITE_MEAL_PLAN,
+            lambda payload: self.user_store.save_meal_plan(payload["meal_plan"]),
+        )
+
         # Initialize Google GenAI client
         self.client = None
         try:
             from google import genai
-            api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+            api_key = settings.gemini_api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
             project = os.getenv("GOOGLE_CLOUD_PROJECT")
             if api_key:
                 self.client = genai.Client(api_key=api_key)
@@ -117,35 +137,57 @@ class ConciergeOrchestrator:
 
     @trace_agent_execution(agent_name="NutriConciergeCoordinator")
     def run(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Execute user request through Google ADK tool calling workflow."""
+        """Execute user request through Google ADK tool calling workflow with HITL approval gates."""
         session_id = input_data.get("session_id", "default_session")
         user_id = input_data.get("user_id", "default_user")
-        user_message = input_data.get("message", "")
+        raw_message = input_data.get("message", "")
+        clean_message = PIIScrubber.scrub_text(raw_message)
         session = self.get_session(session_id)
 
-        session.add_message(role="user", content=user_message)
+        # 0. Check for Human-in-the-Loop Action Approval or Rejection
+        if "action_approval" in input_data:
+            proposal_id = input_data["action_approval"]
+            approval_res = self.hitl_manager.approve_and_execute(proposal_id)
+            msg = approval_res["proposal"].resolution_message if "proposal" in approval_res and approval_res["proposal"] else "Action approved."
+            session.add_message(role="assistant", content=msg, agent_name=self.adk_agent.name)
+            return approval_res
 
-        # 1. Attempt LLM tool-calling execution via Gemini if client is active
+        if "action_rejection" in input_data:
+            proposal_id = input_data["action_rejection"]
+            rejection_res = self.hitl_manager.reject(proposal_id, reason=input_data.get("rejection_reason"))
+            msg = rejection_res["proposal"].resolution_message if "proposal" in rejection_res and rejection_res["proposal"] else "Action cancelled."
+            session.add_message(role="assistant", content=msg, agent_name=self.adk_agent.name)
+            return rejection_res
+
+        session.add_message(role="user", content=clean_message)
+
+        # 1. Strategic Model Routing based on task complexity
+        routed_model = self.model_router.select_model(
+            task_type="weekly_planning" if any(w in clean_message.lower() for w in ["plan", "week", "days"]) else "triage",
+            user_message=clean_message,
+        )
+
+        # 2. Attempt LLM tool-calling execution via Gemini if client is active
         if self.client is not None:
             try:
                 from google.genai import types
                 response = self.client.models.generate_content(
-                    model=self.adk_agent.model,
-                    contents=user_message,
+                    model=routed_model,
+                    contents=clean_message,
                     config=types.GenerateContentConfig(
                         system_instruction=self.adk_agent.instruction,
                         tools=self.adk_agent.tools,
                     ),
                 )
                 if response and response.text:
-                    reply = response.text
+                    reply = PIIScrubber.scrub_text(response.text)
                     session.add_message(role="assistant", content=reply, agent_name=self.adk_agent.name)
                     return {"status": "success", "message": reply}
             except Exception as e:
                 logger.warning(f"Google GenAI live execution fallback: {e}")
 
-        # 2. Google ADK Dynamic Tool Calling Engine
-        return self._execute_adk_tool_workflow(session, user_message, user_id, input_data)
+        # 3. Google ADK Dynamic Tool Calling Engine
+        return self._execute_adk_tool_workflow(session, clean_message, user_id, input_data)
 
     def _execute_adk_tool_workflow(
         self,
